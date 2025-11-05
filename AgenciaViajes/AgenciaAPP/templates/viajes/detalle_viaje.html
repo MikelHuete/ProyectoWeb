@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle del Viaje</title>
+</head>
+<body>
+
+    <h1>Detalle del Viaje: {{ viaje.destino }}</h1>
+
+    <p><strong>Descripción:</strong> {{ viaje.descripcion }}</p>
+    <p><strong>Fecha de inicio:</strong> {{ viaje.fecha_inicio }}</p>
+    <p><strong>Fecha de fin:</strong> {{ viaje.fecha_fin }}</p>
+    <p><strong>Precio:</strong> {{ viaje.precio }} €</p>
+    <p><strong>Usuario responsable:</strong> {{ viaje.usuario.nombre }}</p>
+
+    <h2>Actividades del viaje</h2>
+    {% if viaje.actividades.all %}
+        <ul>
+            {% for act in viaje.actividades.all %}
+                <li>
+                    <strong>Nombre:</strong> {{ act.nombre }}<br>
+                    <strong>Descripción:</strong> {{ act.descripcion }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay actividades registradas para este viaje.</p>
+    {% endif %}
+
+      <a href="{% url 'lista_viajes' %}">Volver a la lista de viajes</a><br>
+      <a href="{% url 'Viajes' %}">Volver a la sección Viajes</a><br>
+
+</body>
+</html>
