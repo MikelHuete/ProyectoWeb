@@ -1,28 +1,19 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Lista de Viajes</title>
-</head>
-<body>
 
-    <h1>Lista de Viajes</h1>
+<h1>Lista de Viajes</h1>
 
-    {% if viajes %}
-        <ul>
-            {% for viaje in viajes %}
-                <li>
-                    <strong>Destino:</strong> {{ viaje.destino }}<br>
-                    <strong>Precio:</strong> {{ viaje.precio }} €<br>
-                    <a href="{% url 'detalle_viaje' viaje.id %}">Ver detalles</a>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No hay viajes disponibles.</p>
-    {% endif %}
+{% if viajes %}
+    <ul>
+        {% for viaje in viajes %}
+            <li>
+                <strong>Destino:</strong> {{ viaje.destino }}<br>
+                <strong>Precio:</strong> {{ viaje.precio }} €<br>
+                <a href="{% url 'detalle_viaje' viaje.id %}">Ver detalles</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay viajes disponibles.</p>
+{% endif %}
 
-    <a href="{% url 'Viajes' %}">Volver a la sección Viajes</a><br>
+<a href="{% url 'Viajes' %}">Volver a la sección Viajes</a><br>
 
-</body>
-</html>
