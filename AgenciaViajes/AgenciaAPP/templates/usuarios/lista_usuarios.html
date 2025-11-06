@@ -1,0 +1,21 @@
+<h1>Lista de Usuarios</h1>
+
+{% if usuarios %}
+    <ul>
+        {% for usuario in usuarios %}
+            <li>
+                <strong>Nombre:</strong> {{ usuario.nombre }}<br>
+                <strong>Email:</strong> {{ usuario.email }}<br>
+                {% if usuario.telefono %}
+                    <strong>Teléfono:</strong> {{ usuario.telefono }}<br>
+                {% endif %}
+                <a href="{% url 'detalle_usuario' usuario.id %}">Ver detalles</a>
+            </li>
+            <br>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay usuarios registrados.</p>
+{% endif %}
+
+<a href="{% url 'Usuarios' %}">Volver a la sección Usuarios</a><br>
