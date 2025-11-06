@@ -1,0 +1,24 @@
+<h1>Detalle del Usuario: {{ usuario.nombre }}</h1>
+
+<p><strong>Email:</strong> {{ usuario.email }}</p>
+<p><strong>Teléfono:</strong> {{ usuario.telefono }}</p>
+<p><strong>Fecha de registro:</strong> {{ usuario.fecha_registro }}</p>
+
+<h2>Viajes asociados</h2>
+{% if usuario.viajes.all %}
+    <ul>
+        {% for viaje in usuario.viajes.all %}
+            <li>
+                <strong>Destino:</strong> 
+                <a href="{% url 'detalle_viaje' viaje.id %}">{{ viaje.destino }}</a><br>
+                <strong>Fechas:</strong> {{ viaje.fecha_inicio }} - {{ viaje.fecha_fin }}<br>
+                <strong>Precio:</strong> {{ viaje.precio }} €
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Este usuario no tiene viajes registrados.</p>
+{% endif %}
+
+<a href="{% url 'lista_usuarios' %}">Volver a la lista de usuarios</a><br>
+<a href="{% url 'Usuarios' %}">Volver a la sección Usuarios</a><br>
