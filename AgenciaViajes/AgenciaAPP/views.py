@@ -45,3 +45,5 @@ def detalle_usuario(request, pk):
    usuario = get_object_or_404(Usuario, id=pk)
    context = {'usuario': usuario}
    return render(request, 'usuarios/detalle_usuario.html', context)
+
+

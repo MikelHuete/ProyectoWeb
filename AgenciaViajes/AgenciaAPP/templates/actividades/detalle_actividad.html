@@ -1,5 +1,9 @@
 <h1>Detalle de la Actividad: {{ actividad.nombre }}</h1>
 
+{% if actividad.fotoActividad %}
+  <img src="{{actividad.fotoActividad}}" alt="Imagen de {{ actividad.nombre }}" style="max-width: 400px;">
+{% endif %}
+
 <p><strong>Descripción:</strong> {{ actividad.descripcion|default:"(Sin descripción)" }}</p>
 {% if actividad.horario %}
    <p><strong>Horario:</strong> {{ actividad.horario }}</p>

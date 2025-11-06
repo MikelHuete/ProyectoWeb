@@ -1,5 +1,8 @@
 <h1>Detalle del Viaje: {{ viaje.destino }}</h1>
 
+{% if viaje.fotoViaje %}
+  <img src="{{viaje.fotoViaje}}" alt="Imagen de {{ actividad.nombre }}" style="max-width: 400px;">
+{% endif %}
 <p><strong>Descripción:</strong> {{ viaje.descripcion }}</p>
 <p><strong>Fecha de inicio:</strong> {{ viaje.fecha_inicio }}</p>
 <p><strong>Fecha de fin:</strong> {{ viaje.fecha_fin }}</p>

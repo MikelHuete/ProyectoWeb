@@ -18,6 +18,8 @@ class Viaje(models.Model):
    fecha_inicio = models.DateField()
    fecha_fin = models.DateField()
    precio = models.DecimalField(max_digits=8, decimal_places=2)
+   fotoViaje = models.URLField("URL de imagen", max_length=500, blank=True, null=True)
+
    usuario = models.ManyToManyField(Usuario, related_name='viajes')
 
    def __str__(self):
@@ -29,6 +31,7 @@ class Actividad(models.Model):
    descripcion = models.TextField(blank=True, null=True)
    horario = models.TimeField(blank=True, null=True)
    viaje = models.ManyToManyField(Viaje, related_name='actividades')
+   fotoActividad= models.URLField("URL de imagen", max_length=500, blank=True, null=True)
 
    def __str__(self):
       return f"{self.nombre} - {self.viaje.first().destino}"
