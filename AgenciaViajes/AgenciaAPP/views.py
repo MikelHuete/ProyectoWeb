@@ -8,13 +8,13 @@ def home(request):
    return render(request, 'index.html')
 
 def viajes(request):
-   return render(request, 'viajes/index.html')
+   return render(request, 'viajes/Viajes.html')
 
 def actividades(request):
-   return render(request, 'actividades/index.html')
+   return render(request, 'actividades/Actividades.html')
 
 def usuarios(request):
-   return render(request, 'usuarios/index.html')
+   return render(request, 'usuarios/Usuarios.html')
 
 def lista_viajes(request):
    viajes = Viaje.objects.all()

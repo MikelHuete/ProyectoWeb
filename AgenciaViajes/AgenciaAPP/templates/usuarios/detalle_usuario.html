@@ -1,22 +1,18 @@
-<<<<<<< HEAD
-{%load static%}
+{% extends 'index.html' %}
 
-=======
->>>>>>> origin/main
+{% block content %}
+
 <h1>Detalle del Usuario: {{ usuario.nombre }}</h1>
 
 <p><strong>Email:</strong> {{ usuario.email }}</p>
 <p><strong>Teléfono:</strong> {{ usuario.telefono }}</p>
 <p><strong>Fecha de registro:</strong> {{ usuario.fecha_registro }}</p>
 
-<<<<<<< HEAD
 <!-- Codigo para inicializar un estilo css, falta los block-->
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'css/css_estilo.css'%}">
 </head>
 
-=======
->>>>>>> origin/main
 <h2>Viajes asociados</h2>
 {% if usuario.viajes.all %}
     <ul>
@@ -35,3 +31,5 @@
 
 <a href="{% url 'lista_usuarios' %}">Volver a la lista de usuarios</a><br>
 <a href="{% url 'Usuarios' %}">Volver a la sección Usuarios</a><br>
+
+{% endblock %}

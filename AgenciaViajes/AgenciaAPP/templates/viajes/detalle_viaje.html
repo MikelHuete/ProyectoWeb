@@ -1,3 +1,7 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
 <h1>Detalle del Viaje: {{ viaje.destino }}</h1>
 
 {% if viaje.fotoViaje %}
@@ -25,3 +29,5 @@
 
     <a href="{% url 'lista_viajes' %}">Volver a la lista de viajes</a><br>
     <a href="{% url 'Viajes' %}">Volver a la sección Viajes</a><br>
+
+{% endblock %}
