@@ -1,3 +1,7 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
 <h1>Detalle de la Actividad: {{ actividad.nombre }}</h1>
 
 {% if actividad.fotoActividad %}
@@ -36,3 +40,6 @@
 
 <a href="{% url 'lista_actividades' %}">Volver a la lista de actividades</a><br>
 <a href="{% url 'Actividades' %}">Volver al inicio de actividades</a>
+
+
+{% endblock %}
