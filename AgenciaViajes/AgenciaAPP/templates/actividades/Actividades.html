@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<h1>Sección de Actividades</h1>
+
+<p>Bienvenido al panel de gestión de actividades relacionadas con los viajes.</p>
+
+<nav>
+    <ul>
+        <li><a href="{% url 'lista_actividades' %}">Ver lista de actividades</a></li>
+        <li><a href="{% url 'Viajes' %}">Ir a la sección de viajes</a></li>
+    </ul>
+</nav>
+
+{% endblock %}
