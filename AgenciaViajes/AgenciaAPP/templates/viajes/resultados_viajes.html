@@ -1,0 +1,12 @@
+{% for viaje in viajes %}
+<div class="viaje-item p-3 mb-2 border">
+    <h5>{{ viaje.destino }}</h5>
+    <p>{{ viaje.descripcion|truncatewords:20 }}</p>
+    <p><strong>Fechas:</strong> {{ viaje.fecha_inicio }} - {{ viaje.fecha_fin }}</p>
+    {% if viaje.fotoViaje %}
+        <img src="{{ viaje.fotoViaje }}" alt="{{ viaje.destino }}" style="max-width:200px;">
+    {% endif %}
+</div>
+{% empty %}
+<p>No hay viajes disponibles con esos filtros.</p>
+{% endfor %}

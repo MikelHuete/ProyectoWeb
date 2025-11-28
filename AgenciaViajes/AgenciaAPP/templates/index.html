@@ -139,9 +139,9 @@
                                 <div class="mb-3 mb-md-0">
                                     <select class="custom-select px-4" style="height: 47px;">
                                         <option selected>Destinos</option>
-                                        <option value="1">Destination 1</option>
-                                        <option value="2">Destination 1</option>
-                                        <option value="3">Destination 1</option>
+                                        {% for destino in destinos %}
+                                            <option value="{{ destino }}">{{ destino }}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                             </div>
@@ -159,16 +159,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
-                                <div class="mb-3 mb-md-0">
-                                    <select class="custom-select px-4" style="height: 47px;">
-                                        <option selected>Duración</option>
-                                        <option value="1">Duration 1</option>
-                                        <option value="2">Duration 1</option>
-                                        <option value="3">Duration 1</option>
-                                    </select>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -179,6 +169,13 @@
         </div>
     </div>
     <!-- Booking End -->
+
+    <!-- Resultados dinámicos -->
+    <div id="resultados-viajes" class="mt-4">
+
+
+    </div>
+
 
     {% block content %} {% endblock %}
 
@@ -257,7 +254,6 @@
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
     <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="{% static 'lib/easing/easing.min.js' %}"></script>
     <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
@@ -270,6 +266,42 @@
 
     <!-- Template Javascript -->
     <script src="{% static 'js/main.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $(".btn-primary").click(function(e){
+                e.preventDefault(); // Evita que el formulario se envíe normalmente
+
+                // Capturamos los valores de los filtros
+                let destino = $(".custom-select").eq(0).val();
+                let fechaInicio = $("#date1 input").val();
+                let fechaFin = $("#date2 input").val();
+                let duracion = $(".custom-select").eq(1).val();
+
+                // Llamada Ajax al servidor
+                $.ajax({
+                    url: "{% url 'filtrar_viajes' %}",
+                    method: "GET",
+                    data: {
+                        'destino': destino,
+                        'fecha_inicio': fechaInicio,
+                        'fecha_fin': fechaFin,
+                        'duracion': duracion
+                    },
+                    success: function(data){
+                        $("#resultados-viajes").fadeOut(100, function(){
+                            $(this).html(data).fadeIn(300);
+                        });
+                    },
+                    error: function(){
+                        $("#resultados-viajes").html("<p>Ocurrió un error al buscar viajes.</p>");
+                    }
+                });
+            });
+        });
+    </script>
+
 </body>
 
 </html>
