@@ -1,0 +1,225 @@
+#divDetalleViaje {
+    width: 100%;
+    background: #f5f7fa;
+    padding-top: 40px;
+}
+
+/* Foto principal */
+.fotoFondo {
+    max-width: 1200px;
+    margin: 0 auto 40px;
+    padding: 0 20px;
+}
+
+.fotoFondo img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 5px solid black;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.tituloFondo {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.tituloDestino {
+    font-size: 56px;
+    color: #2c3e50;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Contenedor principal */
+.contenedorDetalle {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+}
+
+/* Información general */
+.infoGeneral {
+    background: white;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin-bottom: 60px;
+}
+
+.bloqueInfo h2 {
+    font-size: 32px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.descripcion {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+
+/* Datos del viaje */
+.datosViaje {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /*ChatGPT*/
+    gap: 30px;
+    padding-top: 30px;
+    border-top: 2px solid #e0e0e0;
+}
+
+.datoItem h3 {
+    font-size: 16px;
+    color: #82b440;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.datoItem p {
+    font-size: 19px;
+    color: #2c3e50;
+    font-weight: 500;
+    margin: 0;
+}
+
+.precioDestacado {
+    font-size: 40px;
+    color: #82b440;
+    font-weight: 700;
+}
+
+/* Sección de actividades */
+.seccionActividades {
+    margin-bottom: 60px;
+}
+
+.tituloSeccion {
+    font-size: 40px;
+    color: #2c3e50;
+    font-weight: 700;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.gridActividades {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.tarjetaActividad {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.tarjetaActividad:hover {
+    transform: scale(1.01); 
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.imagenActividad {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.imagenActividad img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+
+
+.contenidoActividad {
+    padding: 25px;
+}
+
+.nombreActividad {
+    font-size: 24px;
+    color: #2c3e50;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.descripcionActividad {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.botonVerActividad {
+    width: 100%;
+    padding: 5px 10px;
+    background: #82b440;
+    color: white;
+    text-align: center;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    margin-top: 15px;
+    display: block;
+    text-decoration: none;
+}
+
+.botonVerActividad:hover {
+    background: #6fa030;
+    color: white;
+    text-decoration: none;
+}
+
+/* Botones de navegación */
+.botonesNavegacion {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.botonPrincipal,
+.botonSecundario {
+    padding: 15px 40px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.botonPrincipal {
+    background: #82b440;
+    color: white;
+}
+
+.botonPrincipal:hover {
+    transform: scale(1.01); 
+    color: white;
+    text-decoration: none;
+
+}
+
+.botonSecundario {
+    background: white;
+    color: #82b440;
+    border: 2px solid #82b440;
+
+}
+
+.botonSecundario:hover {
+
+    transform: scale(1.01); 
+    text-decoration: none;
+
+}
+

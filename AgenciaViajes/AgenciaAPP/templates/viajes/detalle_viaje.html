@@ -1,33 +1,86 @@
 {% extends 'index.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/viajes/detalle_viaje.css' %}">
+{% endblock %}
 
 {% block content %}
+<div id="divDetalleViaje">
 
-<h1>Detalle del Viaje: {{ viaje.destino }}</h1>
+    <div class="fotoFondo">
+        <img src="{{ viaje.fotoViaje }}" alt="{{ viaje.destino }}">
+        <div class="tituloFondo">
+            <h1 class="tituloDestino">{{ viaje.destino }}</h1>
+        </div>
+    </div>
 
-{% if viaje.fotoViaje %}
-  <img src="{{viaje.fotoViaje}}" alt="Imagen de {{ actividad.nombre }}" style="max-width: 400px;">
-{% endif %}
-<p><strong>Descripción:</strong> {{ viaje.descripcion }}</p>
-<p><strong>Fecha de inicio:</strong> {{ viaje.fecha_inicio }}</p>
-<p><strong>Fecha de fin:</strong> {{ viaje.fecha_fin }}</p>
-<p><strong>Precio:</strong> {{ viaje.precio }} €</p>
-<p><strong>Usuario responsable:</strong> {{ viaje.usuario.nombre }}</p>
+    <!-- detalle del viaje -->
+    <div class="contenedorDetalle">
+        <div class="infoGeneral">
+            <div class="bloqueInfo">
+                <h2>Descripción del viaje</h2>
+                <p class="descripcion">{{ viaje.descripcion }}</p>
+            </div>
 
-<h2>Actividades del viaje</h2>
-{% if viaje.actividades.all %}
-    <ul>
-        {% for act in viaje.actividades.all %}
-            <li>
-                <strong>Nombre:</strong> {{ act.nombre }}<br>
-                <strong>Descripción:</strong> {{ act.descripcion }}
-            </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>No hay actividades registradas para este viaje.</p>
-{% endif %}
+            <div class="datosViaje">
+                <div class="datoItem">
+                    <h3>Fecha de inicio</h3>
+                    <p>{{ viaje.fecha_inicio|date:"d/m/Y" }}</p>
+                </div>
 
-    <a href="{% url 'lista_viajes' %}">Volver a la lista de viajes</a><br>
-    <a href="{% url 'Viajes' %}">Volver a la sección Viajes</a><br>
+                <div class="datoItem">
+                    <h3>Fecha de fin</h3>
+                    <p>{{ viaje.fecha_fin|date:"d/m/Y" }}</p>
+                </div>
 
+                <div class="datoItem">
+                    <h3>Precio</h3>
+                    <p class="precioDestacado">{{ viaje.precio }}€</p>
+                </div>
+                
+                <div class="datoItem">
+                    <h3>Usuario responsable</h3>
+                    {% for usuario in viaje.usuario.all %} <!-- ChatGPT-->
+                    <p>{{ usuario.nombre }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- tarjetas de actividades (como en lista_viajes)-->
+        <div class="seccionActividades">
+            <h2 class="tituloSeccion">Actividades del viaje</h2>
+            
+            <div class="gridActividades">
+                {% for actividad in viaje.actividades.all %} <!-- ChatGPT-->
+                <div class="tarjetaActividad">
+                    <div class="imagenActividad">
+                        <img src="{{ actividad.fotoActividad }}" alt="{{ actividad.nombre }}">
+                    </div>
+                    
+                    <div class="contenidoActividad">
+                        <h3 class="nombreActividad">{{ actividad.nombre }}</h3>
+                        
+                        <p class="descripcionActividad">{{ actividad.descripcion }}</p>
+                        
+                        <a href="{% url 'detalle_actividad' actividad.pk %}" class="botonVerActividad">
+                            VER
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="botonesNavegacion">
+            <a href="{% url 'lista_viajes' %}#divViajes" class="botonSecundario">
+                Volver a la lista de viajes
+            </a>
+            <a href="{% url 'Viajes' %}" class="botonPrincipal">
+                Volver a la sección Viajes
+            </a>
+        </div>
+    </div>
+</div>
 {% endblock %}

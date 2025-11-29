@@ -73,7 +73,6 @@
     color: white;
     font-size: 20px;
     font-weight: 600;
-    text-transform: uppercase;
     letter-spacing: 1px;
     margin: 0;
 }
@@ -119,7 +118,7 @@
 }
 
 .precioViaje .cantidad {
-    font-size: 2rem;
+    font-size: 36px;
     font-weight: 700;
     color: #82b440;
     margin: 0;
