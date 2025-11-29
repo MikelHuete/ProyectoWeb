@@ -1,0 +1,154 @@
+#divViajes {
+    width: 100%;
+    padding: 10px 0 60px;
+}
+
+.headerViajes {
+    text-align: center;
+    margin-bottom: 60px;
+    padding: 0 20px;
+}
+
+.headerViajes h1 {
+    font-size: 50px;
+    font-weight: 700;
+    color: #82b440;
+    margin-bottom: 50px;
+    letter-spacing: 2px;
+}
+
+.headerViajes p {
+    font-size: 20px;
+    color: black;
+    font-weight: 400;
+}
+
+.contenedorViajes {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.gridViajes {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /*ChatGPT*/
+    gap: 30px;
+}
+
+.tarjetaViaje {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease; /*Para que se aumente poco a poco y no sea un corte*/
+    display: flex;
+    flex-direction: column;
+}
+
+.tarjetaViaje:hover {
+    transform: scale(1.01); 
+}
+
+.imagenViaje {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    background: white;
+}
+
+.imagenViaje img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.tarjetaViaje:hover .imagenViaje img {
+    transform: scale(1.1);
+}
+
+
+.verMas {
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+.contenidoViaje {
+    padding: 25px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.destinoViaje {
+    font-size: 25px;
+    color: #2c3e50;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+.infoViaje {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.fechaViaje {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.fechaViaje p {
+    color: #3e4646;
+    font-size: 18px;
+    margin: 0;
+}
+
+.precioViaje {
+    display: flex;
+    gap: 8px;
+}
+
+.precioViaje .cantidad {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #82b440;
+    margin: 0;
+}
+
+.precioViaje{
+    font-size: 18px;
+    color: #7f8c8d;
+    margin: 0;
+}
+
+.botonReservar {
+    width: 100%;
+    padding: 12px 20px;
+    background: #82b440;
+    color: white;
+    text-align: center;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+    display: block;
+}
+
+.botonReservar:hover {
+    background: #6fa030;
+    color: white;
+    text-decoration: none;
+}
+
+

@@ -1,23 +1,49 @@
 {% extends 'index.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/viajes/lista_viajes.css' %}">
+{% endblock %}
 
 {% block content %}
+<div id="divViajes">
+    <div class="headerViajes">
+        <h1>NUESTROS VIAJES</h1>
+        <p>Descubre los destinos más increíbles del mundo</p>
+    </div>
 
-<h1>Lista de Viajes</h1>
-
-{% if viajes %}
-    <ul>
-        {% for viaje in viajes %}
-            <li>
-                <strong>Destino:</strong> {{ viaje.destino }}<br>
-                <strong>Precio:</strong> {{ viaje.precio }} €<br>
-                <a href="{% url 'detalle_viaje' viaje.id %}">Ver detalles</a>
-            </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>No hay viajes disponibles.</p>
-{% endif %}
-
-<a href="{% url 'Viajes' %}">Volver a la sección Viajes</a><br>
-
+    <div class="contenedorViajes">
+        <div class="gridViajes">
+            {% for viaje in viajes %}
+            <div class="tarjetaViaje">
+                <div class="imagenViaje">
+                        <img src="{{ viaje.fotoViaje }}" alt="{{ viaje.destino }}">
+                </div>
+                
+                <div class="contenidoViaje">
+                    <h3 class="destinoViaje">{{ viaje.destino }}</h3>
+                    
+                    <div class="infoViaje">
+                        <div class="fechaViaje">
+                            <p>{{ viaje.fecha_inicio|date:"d/m/Y" }} - {{ viaje.fecha_fin|date:"d/m/Y" }}</p>
+                        </div>
+                        
+                        <div class="precioViaje">
+                            <p class="cantidad">{{ viaje.precio }}€</p>
+                        </div>
+                    </div>
+                    
+                    <a href="{% url 'detalle_viaje' viaje.pk %}" class="botonReservar">
+                        MÁS INFORMACIÓN
+                    </a>
+                </div>
+            </div>
+            {% empty %}
+            <div class="sinViajes">
+                <p>No hay viajes disponibles en este momento</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 {% endblock %}
