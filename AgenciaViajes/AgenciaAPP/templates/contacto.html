@@ -1,0 +1,76 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/contacto.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div id="divContacto">
+    <div id="titulo">
+        <h1>CONTÁCTANOS</h1>
+        <p>¡Prepara tu próxima aventura con nosotros!</p>
+    </div>
+
+    <div id="Contacto">
+        <div class="columnaIzq">
+            <h2>Envíanos un mensaje</h2>
+            <form>
+                <div class="itemFormulario">
+                    <input type="text"  placeholder="Nombre" required>
+                </div>
+                
+                <div class="itemFormulario">
+                    <input type="text"  placeholder="Apellidos" required>
+                </div>
+                
+                <div class="itemFormulario">
+                    <input type="email"  placeholder="Email" required>
+                </div>
+                
+                <div class="itemFormulario">
+                    <textarea  placeholder="¿En qué podemos ayudarte?" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn-enviar">Enviar</button>
+            </form>
+        </div>
+
+        <div class="columnaDcha">
+            <div class="tituloInfo">
+                <h2>Información</h2>
+                <div class="info-item">
+                    <h3>Dirección</h3>
+                    <p><strong>Oficina Central:</strong></p>
+                    <p>Avenida del Turismo, 123</p>
+                    <p>48007 Bilbao, Bizkaia</p>
+                </div>
+                
+                <div class="info-item">
+                    <h3>Horario</h3>
+                    <p>Lunes a Viernes: 07:00 - 22:00</p>
+                    <p>Sábados: 08:00 - 14:00</p>
+                    <p>Domingos: 09:00 - 13:00</p>
+                </div>
+                                                                                                  
+                <div class="info-item">
+                    <h3>Teléfono</h3>
+                    <p>944 123 456</p>
+                </div>
+            </div>
+
+            <div class="map-box"> <!-- ChatGPT -->
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1911.8213463901168!2d-2.9412823724954205!3d43.271237889188086!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4e50207f52c445%3A0x6ea1bd3e8bae3141!2sUniversidad%20de%20Deusto!5e1!3m2!1ses!2ses!4v1760374538476!5m2!1ses!2ses"
+                     
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

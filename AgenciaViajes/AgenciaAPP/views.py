@@ -16,6 +16,9 @@ def actividades(request):
 def usuarios(request):
    return render(request, 'usuarios/Usuarios.html')
 
+def contacto(request):
+    return render(request, 'contacto.html')
+
 def lista_viajes(request):
    viajes = Viaje.objects.all()
    context = {'viajes': viajes}

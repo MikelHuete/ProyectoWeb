@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* contacto.css */
+
+#divContacto {
+    width: 100%;
+    padding: 80px 0 60px;
+}
+
+#titulo {
+    text-align: center;
+    margin-bottom: 60px;
+    padding: 0 20px;
+}
+
+#titulo h1 {
+    font-size: 56px;
+    font-weight: 700;
+    color: #82b440;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+#titulo p {
+    font-size: 30px;
+    color: black;
+    font-weight: 400;
+}
+
+#Contacto {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 0 20px;
+}
+
+.columnaIzq,
+.columnaDcha {
+    background: white;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.columnaIzq h2,
+.columnaDcha h2 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+/* Formulario */
+.itemFormulario {
+    margin-bottom: 20px;
+}
+
+.itemFormulario input,
+.itemFormulario textarea {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Poppins';
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+}
+
+.itemFormulario input:focus,
+.itemFormulario textarea:focus {
+    outline: none;
+    border-color: #82b440;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(130, 180, 64, 0.1);
+}
+
+.itemFormulario textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.btn-enviar {
+    width: 100%;
+    padding: 15px 30px;
+    background: #82b440;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-enviar:hover {
+    background: #6fa030;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(130, 180, 64, 0.3);
+}
+
+/* Columna derecha */
+.tituloInfo {
+    margin-bottom: 30px;
+}
+
+.info-item {
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.info-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.info-item h3 {
+    font-size: 1.2rem;
+    color: #82b440;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.info-item p {
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 5px 0;
+}
+
+/* Mapa */
+.map-box {
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+}
+
+.map-box iframe {
+    width: 100%;
+    height: 100%;
+}

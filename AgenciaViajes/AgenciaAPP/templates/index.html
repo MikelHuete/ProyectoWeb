@@ -25,6 +25,8 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    {% block extra_css %}{% endblock %}
+
 </head>
 
 <body>
@@ -80,7 +82,7 @@
                         <a href="about.html" class="nav-item nav-link">Sobre nosotros</a>
                         <a href="{% url 'Viajes' %}" class="nav-item nav-link">Viajes</a>
                         <a href="{% url 'Actividades' %}" class="nav-item nav-link">Actividades</a>
-                        <a href="contact.html" class="nav-item nav-link">Contacto</a>
+                        <a href="{% url 'Contacto' %}#divContacto" class="nav-item nav-link">Contacto</a>
                     </div>
                 </div>
             </nav>
