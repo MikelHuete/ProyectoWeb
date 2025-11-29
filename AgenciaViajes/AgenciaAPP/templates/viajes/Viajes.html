@@ -1,12 +1,22 @@
 {% extends 'index.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/viajes/Viajes.css' %}">
+{% endblock %}
 
 {% block content %}
-<h1>Sección Viajes</h1>
-
-<p>Explora nuestros viajes disponibles y encuentra la aventura perfecta para ti.</p>
-
-<ul>
-    <li><a href="{% url 'lista_viajes' %}#divViajes">Ver todos los viajes</a></li>
-</ul>
-
+<div id="seccionViajes">
+    <div class="contenedorTexto">
+        <h1>SECCIÓN DE VIAJES</h1>
+        <p class="subtitulo">Explora nuestros viajes disponibles y encuentra la aventura perfecta para ti.</p>
+        
+        <div class="descripcion">
+            <p>¡Explora el mundo con nosotros! Descubre destinos increíbles, vive experiencias únicas y crea recuerdos que durarán toda la vida. Prepárate para tu próxima aventura y déjate inspirar por nuestra selección de viajes.</p>
+            <p>¡Tu próxima escapada comienza aquí! Haz clic en el botón para ver la lista completa de viajes que ofrecemos y encuentra el viaje perfecto para ti.</p>
+        </div>
+        
+        <a href="{% url 'lista_viajes' %}#divViajes" class="botonVerViajes">VER TODOS LOS VIAJES</a>
+    </div>
+</div>
 {% endblock %}

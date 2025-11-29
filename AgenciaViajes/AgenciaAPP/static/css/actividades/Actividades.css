@@ -1,0 +1,73 @@
+#seccionActividades {
+    width: 100%;
+    padding: 40px 20px;
+}
+
+.contenedorTexto {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.contenedorTexto h1 {
+    font-size: 48px;
+    color: #2c3e50;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.subtitulo {
+    font-size: 20px;
+    color: #7f8c8d;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.descripcion {
+    margin-bottom: 40px;
+}
+
+.descripcion p {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.botonesActividades {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.botonPrincipal,
+.botonSecundario {
+    padding: 15px 40px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.botonPrincipal {
+    background: #82b440;
+    color: white;
+}
+
+.botonPrincipal:hover {
+    background: #6fa030;
+    color: white;
+    text-decoration: none;
+}
+
+.botonSecundario {
+    background: white;
+    color: #82b440;
+    border: 2px solid #82b440;
+}
+
+.botonSecundario:hover {
+    background: #82b440;
+    color: white;
+    text-decoration: none;
+}
