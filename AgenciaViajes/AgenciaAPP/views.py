@@ -5,7 +5,8 @@ from AgenciaAPP.models import Actividad, Usuario, Viaje
 
 # Create your views here.
 def home(request):
-   return render(request, 'index.html')
+   destinos = Viaje.objects.values_list('destino', flat=True).distinct()
+   return render(request, 'index.html', {'destinos': destinos})
 
 def viajes(request):
    return render(request, 'viajes/Viajes.html')
@@ -48,5 +49,30 @@ def detalle_usuario(request, pk):
    usuario = get_object_or_404(Usuario, id=pk)
    context = {'usuario': usuario}
    return render(request, 'usuarios/detalle_usuario.html', context)
+
+def filtrar_viajes(request):
+   print("Llegó una petición Ajax")  # Esto aparece en la consola donde corres `runserver`
+
+   destino = request.GET.get('destino', '')
+   fecha_inicio = request.GET.get('fecha_inicio', '')
+   fecha_fin = request.GET.get('fecha_fin', '')
+
+   print(f"Destino: {destino}, Fecha inicio: {fecha_inicio}, Fecha fin: {fecha_fin}")
+
+   viajes = Viaje.objects.all()
+
+   if destino and destino != "Destinos":
+      viajes = viajes.filter(destino__icontains=destino.strip())
+
+   if fecha_inicio:
+      viajes = viajes.filter(fecha_inicio__gte=fecha_inicio)
+   if fecha_fin:
+      viajes = viajes.filter(fecha_fin__lte=fecha_fin)
+
+   if destino:
+      viajes = viajes.filter(destino__icontains=destino)
+
+   return render(request, "viajes/resultados_viajes.html", {"viajes": viajes})
+
 
 
