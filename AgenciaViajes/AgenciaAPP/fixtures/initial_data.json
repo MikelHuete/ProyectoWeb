@@ -1,0 +1,80 @@
+[
+  {
+    "model": "AgenciaAPP.usuario",
+    "pk": 1,
+    "fields": {
+      "nombre": "Juan Pérez",
+      "email": "juan@example.com",
+      "telefono": 600123456,
+      "fecha_registro": "2025-11-30"
+    }
+  },
+  {
+    "model": "AgenciaAPP.usuario",
+    "pk": 2,
+    "fields": {
+      "nombre": "Ana García",
+      "email": "ana@example.com",
+      "telefono": 611234567,
+      "fecha_registro": "2025-11-30"
+    }
+  },
+  {
+    "model": "AgenciaAPP.usuario",
+    "pk": 3,
+    "fields": {
+      "nombre": "Luis Fernández",
+      "email": "luis@example.com",
+      "telefono": 622345678,
+      "fecha_registro": "2025-11-30"
+    }
+  },
+  {
+    "model": "AgenciaAPP.viaje",
+    "pk": 1,
+    "fields": {
+      "destino": "Laponia",
+      "descripcion": "Viaje mágico a Laponia, con auroras boreales.",
+      "fecha_inicio": "2025-12-20",
+      "fecha_fin": "2025-12-30",
+      "precio": "1500.00",
+      "fotoViaje": "https://example.com/laponia.jpg",
+      "usuario": [1, 2]
+    }
+  },
+  {
+    "model": "AgenciaAPP.viaje",
+    "pk": 2,
+    "fields": {
+      "destino": "París",
+      "descripcion": "Visita la ciudad del amor y sus monumentos icónicos.",
+      "fecha_inicio": "2026-03-10",
+      "fecha_fin": "2026-03-15",
+      "precio": "1200.00",
+      "fotoViaje": "https://example.com/paris.jpg",
+      "usuario": [2, 3]
+    }
+  },
+  {
+    "model": "AgenciaAPP.actividad",
+    "pk": 1,
+    "fields": {
+      "nombre": "Safari en trineo",
+      "descripcion": "Recorrido en trineo con huskies por los bosques nevados.",
+      "horario": "10:00:00",
+      "viaje": [1],
+      "fotoActividad": "https://example.com/trineo.jpg"
+    }
+  },
+  {
+    "model": "AgenciaAPP.actividad",
+    "pk": 2,
+    "fields": {
+      "nombre": "Tour de la Torre Eiffel",
+      "descripcion": "Subida a la Torre Eiffel y paseo por el Sena.",
+      "horario": "15:00:00",
+      "viaje": [2],
+      "fotoActividad": "https://example.com/eiffel.jpg"
+    }
+  }
+]
