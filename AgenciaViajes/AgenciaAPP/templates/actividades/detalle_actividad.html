@@ -1,45 +1,77 @@
 {% extends 'index.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/actividades/detalle_actividad.css' %}">
+{% endblock %}
 
 {% block content %}
+<div id="divDetalleActividad">
 
-<h1>Detalle de la Actividad: {{ actividad.nombre }}</h1>
+    <div class="fotoFondo">
+        <img src="{{ actividad.fotoActividad }}" alt="{{ actividad.nombre }}">
+        <div class="tituloFondo">
+            <h1 class="tituloActividad">{{ actividad.nombre }}</h1>
+        </div>
+    </div>
 
-{% if actividad.fotoActividad %}
-  <img src="{{actividad.fotoActividad}}" alt="Imagen de {{ actividad.nombre }}" style="max-width: 400px;">
-{% endif %}
+    <div class="contenedorDetalle">
+        <div class="infoGeneral">
+            <div class="bloqueInfo">
+                <h2>Descripción</h2>
+                <p class="descripcion">{{ actividad.descripcion }}</p>
+            </div>
 
-<p><strong>Descripción:</strong> {{ actividad.descripcion|default:"(Sin descripción)" }}</p>
-{% if actividad.horario %}
-   <p><strong>Horario:</strong> {{ actividad.horario }}</p>
-{% endif %}
+            <div class="datosActividad">
+                <div class="datoItem">
+                    <h3>Horario</h3>
+                    <p>{{ actividad.horario|time:"H:i" }}</p>
+                </div>
+            </div>
+        </div>
 
-<h2>Viajes relacionados</h2>
-{% if actividad.viaje.all %}
-   <ul>
-      {% for v in actividad.viaje.all %}
-            <li>
-               <strong>Destino:</strong> {{ v.destino }}<br>
-               <strong>Fechas:</strong> {{ v.fecha_inicio }} - {{ v.fecha_fin }}<br>
-               <strong>Precio:</strong> {{ v.precio }} €<br>
+        <div class="seccionViajes">
+            <h2 class="tituloSeccion">Viajes relacionados</h2>
+            
+            <div class="listaViajes">
+                {% for viaje in actividad.viaje.all %}
+                <div class="itemViaje">
+                    <div class="infoViaje">
+                        <h3>Destino:</h3>
+                        <p>{{ viaje.destino }}</p>
+                    </div>
 
-               <h4>Usuarios responsables:</h4>
-               <ul>
-                  {% for u in v.usuario.all %}
-                        <li>{{ u.nombre }} ({{ u.email }})</li>
-                  {% endfor %}
-               </ul>
+                    <div class="infoViaje">
+                        <h3>Fechas:</h3>
+                        <p>{{ viaje.fecha_inicio|date:"d/m/Y" }} - {{ viaje.fecha_fin|date:"d/m/Y" }}</p>
+                    </div>
 
-               <a href="{% url 'detalle_viaje' v.id %}">Ver detalle del viaje</a>
-            </li>
-            <hr>
-      {% endfor %}
-   </ul>
-{% else %}
-   <p>Esta actividad no está asociada a ningún viaje.</p>
-{% endif %}
+                    <div class="infoViaje">
+                        <h3>Precio:</h3>
+                        <p class="precioViaje">{{ viaje.precio }}€</p>
+                    </div>
 
-<a href="{% url 'lista_actividades' %}">Volver a la lista de actividades</a><br>
-<a href="{% url 'Actividades' %}">Volver al inicio de actividades</a>
+                    <div class="infoViaje">
+                        <h3>Usuarios responsables:</h3>
+                        {% for usuario in viaje.usuario.all %}
+                        <p>{{ usuario.nombre }} ({{ usuario.email }})</p>
+                        {% endfor %}
+                    </div>
 
+                    <a href="{% url 'detalle_viaje' viaje.pk %}" class="botonVerViaje">VER DETALLE DEL VIAJE</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
 
+        <div class="botonesNavegacion">
+            <a href="{% url 'lista_actividades' %}" class="botonSecundario">
+                VOLVER A LA LISTA DE ACTIVIDADES
+            </a>
+            <a href="{% url 'Actividades' %}" class="botonPrincipal">
+                VOLVER AL INICIO DE ACTIVIDADES
+            </a>
+        </div>
+    </div>
+</div>
 {% endblock %}
