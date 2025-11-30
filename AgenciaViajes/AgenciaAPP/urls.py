@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .views import ViajeListView, ViajeDetailView
 
 urlpatterns = [
    path('', views.home, name='Inicio'),
@@ -11,8 +12,6 @@ urlpatterns = [
 
 
    # Listas y detalles
-   path('viajes/lista/', views.lista_viajes, name='lista_viajes'),
-   path('viajes/<int:pk>/', views.detalle_viaje, name='detalle_viaje'),
 
    path('actividades/lista/', views.lista_actividades, name='lista_actividades'),
    path('actividades/<int:pk>/', views.detalle_actividad, name='detalle_actividad'),
@@ -21,4 +20,12 @@ urlpatterns = [
    path('usuarios/<int:pk>/', views.detalle_usuario, name='detalle_usuario'),
 
    path('filtrar_viajes/', views.filtrar_viajes, name='filtrar_viajes'),
+
+
+   # Usando vistas basadas en clases
+
+   path('viajes/lista/', ViajeListView.as_view(), name='lista_viajes'),
+   path('viajes/<int:pk>/', ViajeDetailView.as_view(), name='detalle_viaje'),
+
+
 ]

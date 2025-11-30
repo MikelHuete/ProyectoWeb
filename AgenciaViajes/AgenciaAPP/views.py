@@ -20,16 +20,6 @@ def usuarios(request):
 def contacto(request):
     return render(request, 'contacto.html')
 
-def lista_viajes(request):
-   viajes = Viaje.objects.all()
-   context = {'viajes': viajes}
-   return render(request, 'viajes/lista_viajes.html', context)
-
-def detalle_viaje(request, pk):
-   viaje = get_object_or_404(Viaje, id=pk)
-   context = {'viaje': viaje}
-   return render(request, 'viajes/detalle_viaje.html', context)
-
 def lista_actividades(request):
    actividades = Actividad.objects.all()
    context = {'actividades': actividades}
@@ -73,6 +63,25 @@ def filtrar_viajes(request):
       viajes = viajes.filter(destino__icontains=destino)
 
    return render(request, "viajes/resultados_viajes.html", {"viajes": viajes})
+
+# ==========================
+# VISTAS BASADAS EN CLASES
+# ==========================
+
+from django.views.generic import ListView, DetailView
+
+
+class ViajeListView(ListView):
+   model = Viaje
+   template_name = "viajes/lista_viajes.html"
+   context_object_name = "viajes"
+
+
+class ViajeDetailView(DetailView):
+   model = Viaje
+   template_name = "viajes/detalle_viaje.html"
+   context_object_name = "viaje"
+
 
 
 
