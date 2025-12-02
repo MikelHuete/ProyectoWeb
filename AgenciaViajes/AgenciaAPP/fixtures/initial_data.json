@@ -38,7 +38,7 @@
       "fecha_inicio": "2025-12-20",
       "fecha_fin": "2025-12-30",
       "precio": "1500.00",
-      "fotoViaje": "https://example.com/laponia.jpg",
+      "fotoViaje": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fviajes.nationalgeographic.com.es%2Fpromociones%2Flaponia-finlandesa-clave-blanca-y-muy-verde_18531&psig=AOvVaw3r6O0OVXfXyw9qAARjfRnn&ust=1764765198615000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCOCn_Of0npEDFQAAAAAdAAAAABAE",
       "usuario": [1, 2]
     }
   },
@@ -51,7 +51,7 @@
       "fecha_inicio": "2026-03-10",
       "fecha_fin": "2026-03-15",
       "precio": "1200.00",
-      "fotoViaje": "https://example.com/paris.jpg",
+      "fotoViaje": "https://www.google.com/imgres?q=paris&imgurl=https%3A%2F%2Fimg.static-af.com%2Ftransform%2F45cb9a13-b167-4842-8ea8-05d0cc7a4d04%2F&imgrefurl=https%3A%2F%2Fwwws.airfrance.es%2Finformation%2Fprepare%2Fpendant-voyage%2Fdecouvrir-paris&docid=jI5JdGa56YpLyM&tbnid=C5K-A446KCASiM&vet=12ahUKEwjlgo_99J6RAxWROfsDHd6VNFkQM3oECCAQAA..i&w=2500&h=1667&hcb=2&ved=2ahUKEwjlgo_99J6RAxWROfsDHd6VNFkQM3oECCAQAA",
       "usuario": [2, 3]
     }
   },
@@ -63,7 +63,7 @@
       "descripcion": "Recorrido en trineo con huskies por los bosques nevados.",
       "horario": "10:00:00",
       "viaje": [1],
-      "fotoActividad": "https://example.com/trineo.jpg"
+      "fotoActividad": "https://www.google.com/imgres?q=safari%20trineo%20laponia&imgurl=https%3A%2F%2Fdynamic-media-cdn.tripadvisor.com%2Fmedia%2Fphoto-o%2F1a%2F56%2Fc9%2Fb1%2Fcaption.jpg%3Fw%3D1200%26h%3D-1%26s%3D1&imgrefurl=https%3A%2F%2Fwww.tripadvisor.es%2FAttractionProductReview-g189922-d11461893-Lapland_Reindeer_Safari_from_Rovaniemi-Rovaniemi_Lapland.html&docid=jvhkSOlYnLOeWM&tbnid=kKpDZCX7QVy2aM&vet=12ahUKEwirwc6G9Z6RAxWeQ6QEHanIHBAQM3oECCAQAA..i&w=720&h=480&hcb=2&itg=1&ved=2ahUKEwirwc6G9Z6RAxWeQ6QEHanIHBAQM3oECCAQAA"
     }
   },
   {
@@ -74,7 +74,7 @@
       "descripcion": "Subida a la Torre Eiffel y paseo por el Sena.",
       "horario": "15:00:00",
       "viaje": [2],
-      "fotoActividad": "https://example.com/eiffel.jpg"
+      "fotoActividad": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.toureiffel.paris%2Fes&psig=AOvVaw0r9VHdSyDIJuX_Us9scSwC&ust=1764765288131000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCMjsrpb1npEDFQAAAAAdAAAAABAM"
     }
   }
 ]
