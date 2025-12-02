@@ -20,6 +20,9 @@ def usuarios(request):
 def contacto(request):
     return render(request, 'contacto.html')
 
+def sobreNosotros(request):
+   return render(request, 'sobreNosotros.html')
+
 def lista_actividades(request):
    actividades = Actividad.objects.all()
    context = {'actividades': actividades}

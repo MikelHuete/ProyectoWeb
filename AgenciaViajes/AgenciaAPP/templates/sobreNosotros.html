@@ -1,0 +1,36 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/sobreNosotros.css' %}">
+{% endblock %}
+
+{% block content %}
+
+
+<div id="sobreNosotros">
+
+    <div id="titulo">
+        <h1>SOBRE NOSOTROS</h1>
+        <p>¡Descubre quiénes somos y qué nos motiva!</p>
+    </div>
+
+    <div id="contenidoSobreNosotros">
+        <div class="columnaIzq">
+            <h2>Nuestra Misión</h2>
+            <p>En AgenciaViajes, nuestra misión es ofrecer experiencias de viaje inolvidables que conecten a las personas con el mundo. Nos esforzamos por brindar un servicio excepcional, atención personalizada y opciones de viaje que se adapten a las necesidades y deseos de cada cliente.</p>
+        </div>
+
+        <div class="columnaDcha">
+            <h2>Nuestros Valores</h2>
+            <ul>
+                <li><strong>Compromiso:</strong> Estamos dedicados a proporcionar el mejor servicio posible a nuestros clientes.</li>
+                <li><strong>Calidad:</strong> Nos aseguramos de que cada viaje cumpla con los más altos estándares de calidad.</li>
+                <li><strong>Innovación:</strong> Buscamos constantemente nuevas formas de mejorar y ofrecer experiencias únicas.</li>
+                <li><strong>Sostenibilidad:</strong> Promovemos prácticas de viaje responsables que respeten el medio ambiente y las culturas locales.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
