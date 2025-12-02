@@ -33,5 +33,20 @@ class Actividad(models.Model):
    viaje = models.ManyToManyField(Viaje, related_name='actividades')
    fotoActividad= models.URLField("URL de imagen", max_length=500, blank=True, null=True)
 
+   class Meta:
+      verbose_name = "Actividad"
+      verbose_name_plural = "Actividades"
+
    def __str__(self):
       return f"{self.nombre} - {self.viaje.first().destino}"
+
+# Modelo de reserva (nuevo)
+class Reserva(models.Model):
+   nombre = models.CharField(max_length=100)
+   email = models.EmailField()
+   viaje = models.ForeignKey(Viaje, on_delete=models.CASCADE, related_name='reservas')
+   personas = models.PositiveIntegerField(default=1)
+   fecha_reserva = models.DateTimeField(auto_now_add=True)
+
+   def __str__(self):
+      return f"Reserva de {self.nombre} para {self.viaje.destino} ({self.personas} personas)"

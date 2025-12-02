@@ -35,6 +35,9 @@
                     
                     <a href="{% url 'detalle_viaje' viaje.pk %}#divDetalleViaje" class="botonReservar"> MÁS INFORMACIÓN </a>
 
+                        <!-- NUEVO BOTÓN DE RESERVA -->
+                    <a href="{% url 'reserva_viaje' viaje.pk %}" class="btn btn-success mt-2"> Reservar este viaje </a>
+
                 </div>
             </div>
             {% empty %}
