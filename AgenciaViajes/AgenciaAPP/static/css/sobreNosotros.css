@@ -1,1 +1,47 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+#divsobreNosotros {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+#caja {
+    width: 80%;
+    max-width: 900px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.15);
+    text-align: center; /* Centra todo el texto */
+}
+#titulo h1{
+    color: #82b440;
+}
+
+#titulo h1, 
+#titulo p {
+    margin: 0;
+    margin-bottom: 10px;
+    
+}
+
+#imgTitulo {
+    width: 70%;
+    max-width: 350px;
+    border-radius: 20px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+    margin-top: 20px;
+}
+
+/* Para que el contenido interno quede ordenado */
+#contenidoSobreNosotros {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    gap: 20px;
+}
+
+.columnaIzq, .columnaDcha {
+    flex: 1;
+    min-width: 280px;
+    text-align: left;
+}
