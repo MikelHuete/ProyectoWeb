@@ -19,6 +19,7 @@ class Viaje(models.Model):
    fecha_fin = models.DateField()
    precio = models.DecimalField(max_digits=8, decimal_places=2)
    fotoViaje = models.URLField("URL de imagen", max_length=500, blank=True, null=True)
+   hotel = models.CharField(max_length=150, blank=True, null=True)
 
    usuario = models.ManyToManyField(Usuario, related_name='viajes')
 
