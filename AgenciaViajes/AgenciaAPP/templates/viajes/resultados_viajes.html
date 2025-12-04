@@ -1,12 +1,101 @@
-{% for viaje in viajes %}
-<div class="viaje-item p-3 mb-2 border">
-    <h5>{{ viaje.destino }}</h5>
-    <p>{{ viaje.descripcion|truncatewords:20 }}</p>
-    <p><strong>Fechas:</strong> {{ viaje.fecha_inicio }} - {{ viaje.fecha_fin }}</p>
-    {% if viaje.fotoViaje %}
-        <img src="{{ viaje.fotoViaje }}" alt="{{ viaje.destino }}" style="max-width:200px;">
-    {% endif %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/viajes/detalle_viaje.css' %}">
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+{% for viaje in viajes %} 
+<div id="divDetalleViaje">
+
+    <div class="fotoFondo">
+        {% if viaje.fotoViaje %}
+            <img src="{{ viaje.fotoViaje }}" alt="{{ viaje.destino }}">
+        {% endif %}       
+        <div class="tituloFondo">
+            <h1 class="tituloDestino">{{ viaje.destino }}</h1>
+        </div>
+    </div>
+
+    <div class="contenedorDetalle">
+        <div class="infoGeneral">
+            <div class="bloqueInfo">
+                <h2>Descripción del viaje</h2>
+                <p class="descripcion">{{ viaje.descripcion }}</p>
+            </div>
+
+            <div class="datosViaje">
+                <div class="datoItem">
+                    <h3>Fecha de inicio</h3>
+                    <p>{{ viaje.fecha_inicio|date:"d/m/Y" }}</p>
+                </div>
+
+                <div class="datoItem">
+                    <h3>Fecha de fin</h3>
+                    <p>{{ viaje.fecha_fin|date:"d/m/Y" }}</p>
+                </div>
+
+                <div class="datoItem">
+                    <h3>Precio</h3>
+                    <p class="precioDestacado">{{ viaje.precio }}€</p>
+                </div>
+                
+                <div class="datoItem">
+                    <h3>Usuario responsable</h3>
+                    {% for usuario in viaje.usuario.all %}
+                    <p>{{ usuario.nombre }}</p>
+                    {% empty %}
+                    <p>No asignado</p>
+                    {% endfor %}
+                </div>
+                <div class="datoItem">
+                    <h3>Hotel</h3>
+                    <p>{{ viaje.hotel }}</p>
+                </div>
+        </div>
+
+        <div class="seccionActividades">
+            <h2 class="tituloSeccion">Actividades del viaje</h2>
+            
+            <div class="gridActividades">
+                {% for actividad in viaje.actividades.all %}
+                <div class="tarjetaActividad">
+                    <div class="imagenActividad">
+                        {% if actividad.fotoActividad %}
+                            <img src="{{ actividad.fotoActividad }}" alt="{{ actividad.fotoActividad.name }}">
+                        {% endif %}                    
+                    </div>
+                    
+                    <div class="contenidoActividad">
+                        <h3 class="nombreActividad">{{ actividad.nombre }}</h3>
+                        <p class="descripcionActividad">{{ actividad.descripcion }}</p>
+                        
+                        <a href="{% url 'detalle_actividad' actividad.pk %}" class="botonVerActividad">
+                            VER
+                        </a>
+                    </div>
+                </div>
+                {% empty %}
+                <p>Este viaje no incluye actividades programadas aún.</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="botonesNavegacion">
+            <a href="{% url 'reserva_viaje' viaje.pk %}" class="botonPrincipal"> Reservar este viaje </a>
+            <a href="{% url 'lista_viajes' %}" class="botonSecundario">
+                Volver a la lista de viajes
+            </a>
+            <a href="{% url 'Viajes' %}" class="botonPrincipal">
+                Volver a la sección Viajes
+            </a>
+        </div>
+    </div>
 </div>
 {% empty %}
 <p>No hay viajes disponibles con esos filtros.</p>
 {% endfor %}
+{% endblock %}
