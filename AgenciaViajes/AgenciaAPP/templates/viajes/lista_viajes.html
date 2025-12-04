@@ -5,6 +5,9 @@
 <link rel="stylesheet" href="{% static 'css/viajes/lista_viajes.css' %}">
 {% endblock %}
 
+{% block header %}
+{% endblock %}
+
 {% block content %}
 <div id="divViajes">
     <div class="headerViajes">
@@ -33,7 +36,7 @@
                         </div>
                     </div>
                     
-                    <a href="{% url 'detalle_viaje' viaje.pk %}#divDetalleViaje" class="botonReservar"> MÁS INFORMACIÓN </a>
+                    <a href="{% url 'detalle_viaje' viaje.pk %}" class="botonReservar"> MÁS INFORMACIÓN </a>
 
                         <!-- NUEVO BOTÓN DE RESERVA -->
                     <a href="{% url 'reserva_viaje' viaje.pk %}" class="btn btn-success mt-2"> Reservar este viaje </a>

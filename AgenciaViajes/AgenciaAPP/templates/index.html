@@ -30,6 +30,8 @@
 </head>
 
 <body>
+
+
     <!-- Topbar Start -->
     <div class="container-fluid bg-light pt-3 d-none d-lg-block">
         <div class="container">
@@ -79,10 +81,10 @@
                 <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
                       <a href="{% url 'Inicio' %}" class="nav-item nav-link">Inicio</a>
-                        <a href="{% url 'SobreNosotros' %}#divsobreNosotros" class="nav-item nav-link">Sobre nosotros</a>
-                        <a href="{% url 'Viajes' %}#seccionViajes" class="nav-item nav-link">Viajes</a>
-                        <a href="{% url 'Actividades' %}#seccionActividades" class="nav-item nav-link">Actividades</a>
-                        <a href="{% url 'Contacto' %}#divContacto" class="nav-item nav-link">Contacto</a>
+                        <a href="{% url 'SobreNosotros' %}" class="nav-item nav-link">Sobre nosotros</a>
+                        <a href="{% url 'Viajes' %}" class="nav-item nav-link">Viajes</a>
+                        <a href="{% url 'Actividades' %}" class="nav-item nav-link">Actividades</a>
+                        <a href="{% url 'Contacto' %}" class="nav-item nav-link">Contacto</a>
                     </div>
                 </div>
             </nav>
@@ -90,7 +92,7 @@
     </div>
     <!-- Navbar End -->
 
-
+    {% block header %}
     <!-- Carousel Start -->
     <div class="container-fluid p-0">
         <div id="header-carousel" class="carousel slide" data-ride="carousel">
@@ -175,7 +177,10 @@
     <div id="resultados-viajes" class="mt-4">
 
 
-    </div>
+    </div>  
+
+    {% endblock %}
+
 
 
     {% block content %} {% endblock %}
