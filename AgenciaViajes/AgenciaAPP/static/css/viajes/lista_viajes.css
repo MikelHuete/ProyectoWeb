@@ -6,11 +6,11 @@
 .headerViajes {
     text-align: center;
     margin-bottom: 60px;
-    padding: 0 20px;
+    padding: 10px;
 }
 
 .headerViajes h1 {
-    font-size: 50px;
+    font-size: 56px;
     font-weight: 700;
     color: #82b440;
     margin-bottom: 50px;
@@ -150,5 +150,7 @@
     color: white;
     text-decoration: none;
 }
+
+
 
 

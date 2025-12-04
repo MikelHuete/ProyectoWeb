@@ -1,16 +1,16 @@
 #divActividades {
     width: 100%;
-    padding: 10px 0 60px;
+    padding: 80px 0 60px;
 }
 
 .headerActividades {
     text-align: center;
     margin-bottom: 60px;
-    padding: 0 20px;
+    padding: 10px;
 }
 
 .headerActividades h1 {
-    font-size: 50px;
+    font-size: 56px;
     font-weight: 700;
     color: #82b440;
     margin-bottom: 50px;
