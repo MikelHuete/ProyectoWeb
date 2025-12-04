@@ -4,43 +4,48 @@
 {% endblock %}
 
 {% block content %}
+<div id="divActividades">
+    <div class="headerActividades">
+        <h1>NUESTRAS ACTIVIDADES</h1>
+        <p>Explora todas las actividades disponibles en nuestros viajes</p>
+    </div>
 
-<h1>Lista de Actividades</h1>
-
-{% if actividades %}
-    <ul>
-        {% for act in actividades %}
-            <li>
-                <strong>{{ act.nombre }}</strong><br>
-                <em>{{ act.descripcion|default:"(Sin descripción)" }}</em><br>
-                {% if act.horario %}
-                    <strong>Horario:</strong> {{ act.horario }}
-                {% endif %}
-                <br>
-                <strong>Viajes asociados:</strong>
-                {% if act.viaje.all %}
-                    <ul>
-                        {% for v in act.viaje.all %}
-                            <li>
-                                {{ v.destino }} ({{ v.fecha_inicio }} - {{ v.fecha_fin }})
-                                <a href="{% url 'detalle_viaje' v.id %}">Ver viaje</a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                {% else %}
-                    Ninguno
-                {% endif %}
-                <br>
-                <a href="{% url 'detalle_actividad' act.id %}">Ver detalle de la actividad</a>
-            </li>
-            <hr>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>No hay actividades registradas.</p>
-{% endif %}
-
-<a href="{% url 'Actividades' %}">Volver al inicio de actividades</a><br>
-<a href="{% url 'Viajes' %}">Ir a la sección de viajes</a>
-
-{% endblock %}
+    <div class="contenedorActividades">
+        <div class="gridActividades">
+            {% for actividad in actividades %}
+            <div class="tarjetaActividad">
+                <div class="imagenActividad">
+                    <img src="{{ actividad.fotoActividad }}" alt="{{ actividad.nombre }}">
+                </div>
+               
+                <div class="contenidoActividad">
+                    <h3 class="nombreActividad">{{ actividad.nombre }}</h3>
+                   
+                    <div class="infoActividad">
+                        {% if actividad.horario %}
+                        <div class="horarioActividad">
+                            <p>Horario: {{ actividad.horario|time:"H:i" }}</p>
+                        </div>
+                        {% endif %}
+                       
+                        {% if actividad.descripcion %}
+                        <div class="descripcionActividad">
+                            <p>{{ actividad.descripcion|truncatewords:15 }}</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                   
+                    <a href="{% url 'detalle_actividad' actividad.pk %}" class="botonReservar">
+                        MÁS INFORMACIÓN
+                    </a>
+                </div>
+            </div>
+            {% empty %}
+            <div class="sinActividades">
+                <p>No hay actividades disponibles en este momento</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %} 
