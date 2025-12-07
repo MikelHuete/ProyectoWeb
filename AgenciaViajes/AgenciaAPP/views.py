@@ -1,7 +1,8 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse
 
 from AgenciaAPP.models import Actividad, Usuario, Viaje
+from .forms import ReservaForm
 
 # Create your views here.
 def home(request):
@@ -19,6 +20,9 @@ def usuarios(request):
 
 def contacto(request):
     return render(request, 'contacto.html')
+
+def sobreNosotros(request):
+   return render(request, 'sobreNosotros.html')
 
 def lista_actividades(request):
    actividades = Actividad.objects.all()
@@ -63,6 +67,27 @@ def filtrar_viajes(request):
       viajes = viajes.filter(destino__icontains=destino)
 
    return render(request, "viajes/resultados_viajes.html", {"viajes": viajes})
+
+def reserva_viaje(request, pk):
+    viaje = get_object_or_404(Viaje, pk=pk)
+
+    if request.method == 'POST':
+        form = ReservaForm(request.POST)
+        if form.is_valid():
+            reserva = form.save(commit=False)
+            reserva.viaje = viaje
+            reserva.save()
+            return render(request, 'reservar/gracias.html')
+
+
+    else:
+        # AQUÍ es donde se asigna el viaje automáticamente
+        form = ReservaForm(initial={'viaje': viaje})
+
+    return render(request, 'reservar/reserva_viaje.html', {
+        'form': form,
+        'viaje': viaje
+    })
 
 # ==========================
 # VISTAS BASADAS EN CLASES

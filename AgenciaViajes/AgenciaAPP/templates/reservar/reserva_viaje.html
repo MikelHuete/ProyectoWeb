@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+
+{% load static %}  <-- ¡Añade esta línea!
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/reservar/reserva_viaje.css' %}">
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Reserva tu viaje</h2>
+
+    <form method="POST" action="{% url 'reserva_viaje' viaje.pk %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Enviar</button>
+</form>
+
+</div>
+{% endblock %}

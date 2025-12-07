@@ -25,11 +25,16 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
-    {% block extra_css %}{% endblock %}
+    {% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/viajes/Viajes.css' %}">
+    <link rel="stylesheet" href="{% static 'css/actividades/actividades.css' %}">
+    {% endblock %}
 
 </head>
 
 <body>
+
+
     <!-- Topbar Start -->
     <div class="container-fluid bg-light pt-3 d-none d-lg-block">
         <div class="container">
@@ -79,10 +84,10 @@
                 <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
                       <a href="{% url 'Inicio' %}" class="nav-item nav-link">Inicio</a>
-                        <a href="about.html" class="nav-item nav-link">Sobre nosotros</a>
-                        <a href="{% url 'Viajes' %}#seccionViajes" class="nav-item nav-link">Viajes</a>
-                        <a href="{% url 'Actividades' %}#seccionActividades" class="nav-item nav-link">Actividades</a>
-                        <a href="{% url 'Contacto' %}#divContacto" class="nav-item nav-link">Contacto</a>
+                        <a href="{% url 'SobreNosotros' %}" class="nav-item nav-link">Sobre nosotros</a>
+                        <a href="{% url 'lista_viajes' %}" class="nav-item nav-link">Viajes</a>
+                        <a href="{% url 'lista_actividades' %}" class="nav-item nav-link">Actividades</a>
+                        <a href="{% url 'Contacto' %}" class="nav-item nav-link">Contacto</a>
                     </div>
                 </div>
             </nav>
@@ -90,7 +95,7 @@
     </div>
     <!-- Navbar End -->
 
-
+    {% block header %}
     <!-- Carousel Start -->
     <div class="container-fluid p-0">
         <div id="header-carousel" class="carousel slide" data-ride="carousel">
@@ -115,16 +120,6 @@
                     </div>
                 </div>
             </div>
-            <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
-                <div class="btn btn-dark" style="width: 45px; height: 45px;">
-                    <span class="carousel-control-prev-icon mb-n2"></span>
-                </div>
-            </a>
-            <a class="carousel-control-next" href="#header-carousel" data-slide="next">
-                <div class="btn btn-dark" style="width: 45px; height: 45px;">
-                    <span class="carousel-control-next-icon mb-n2"></span>
-                </div>
-            </a>
         </div>
     </div>
     <!-- Carousel End -->
@@ -176,6 +171,40 @@
 
 
     </div>
+    
+    <div id="seccionViajes">
+        <div class="contenedorTexto">
+            <h1>SECCIÓN DE VIAJES</h1>
+            <p class="subtitulo">Explora nuestros viajes disponibles y encuentra la aventura perfecta para ti.</p>
+            
+            <div class="descripcion">
+                <p>¡Explora el mundo con nosotros! Descubre destinos increíbles, vive experiencias únicas y crea recuerdos que durarán toda la vida. Prepárate para tu próxima aventura y déjate inspirar por nuestra selección de viajes.</p>
+                <p>¡Tu próxima escapada comienza aquí! Haz clic en el botón para ver la lista completa de viajes que ofrecemos y encuentra el viaje perfecto para ti.</p>
+            </div>
+            
+            <a href="{% url 'lista_viajes' %}" class="botonVerViajes">VER LISTA DE VIAJES</a>
+
+        </div>
+    </div>
+
+    <div id="seccionActividades">
+        <div class="contenedorTexto">
+            <h1>Sección de Actividades</h1>
+            <p class="subtitulo">Bienvenido al panel de gestión de actividades relacionadas con los viajes.</p>
+            
+            <div class="descripcion">
+                <p>¡Vive la aventura! Explora destinos increíbles, disfruta de actividades únicas y crea recuerdos inolvidables.</p>
+                <p>¡Descubre nuestros viajes! Haz clic para ver la lista completa y elegir tu próxima experiencia.</p>
+            </div>
+            
+            <div class="botonesActividades">
+                <a href="{% url 'lista_actividades' %}" class="botonPrincipal">VER LISTA DE ACTIVIDADES</a>
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}
+
 
 
     {% block content %} {% endblock %}
@@ -185,7 +214,7 @@
         <div class="row pt-5">
             <div class="col-lg-3 col-md-6 mb-5">
                 <a href="" class="navbar-brand">
-                    <h1 class="text-primary"><span class="text-white">TRAVEL</span>ER</h1>
+                    <h1 class="text-primary"><span class="text-white">AGENCI</span>APP</h1>
                 </a>
                 <p>Viajar es vivir nuevas historias. En AgenciAPP, te ayudamos a crear recuerdos que durarán toda la vida. Explora, descubre y déjate llevar.</p>
                 <h6 class="text-white text-uppercase mt-4 mb-3" style="letter-spacing: 5px;">Follow Us</h6>
