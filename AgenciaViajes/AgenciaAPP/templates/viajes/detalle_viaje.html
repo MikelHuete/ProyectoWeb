@@ -11,7 +11,7 @@
     <div class="fotoFondo">
         <img src="{{ viaje.fotoViaje }}" alt="{{ viaje.destino }}">
         <div class="tituloFondo">
-            <h1 class="tituloDestino">{{ viaje.destino }}</h1>
+            <h1 id="destino" class="tituloDestino">{{ viaje.destino }}</h1>
         </div>
     </div>
 
@@ -25,13 +25,13 @@
 
             <div class="datosViaje">
                 <div class="datoItem">
-                    <h3>Fecha de inicio</h3>
-                    <p>{{ viaje.fecha_inicio|date:"d/m/Y" }}</p>
+                    <h3 >Fecha de inicio</h3>
+                    <p id="fecha-inicio">{{ viaje.fecha_inicio|date:"d/m/Y" }}</p>
                 </div>
 
                 <div class="datoItem">
                     <h3>Fecha de fin</h3>
-                    <p>{{ viaje.fecha_fin|date:"d/m/Y" }}</p>
+                    <p id="fecha-fin">{{ viaje.fecha_fin|date:"d/m/Y" }}</p>
                 </div>
 
                 <div class="datoItem">
@@ -41,11 +41,18 @@
                 
                 <div class="datoItem">
                     <h3>Usuario responsable</h3>
-                    {% for usuario in viaje.usuario.all %} <!-- ChatGPT-->
+                    {% for usuario in viaje.usuario.all %}
                     <p>{{ usuario.nombre }}</p>
                     {% endfor %}
                 </div>
             </div>
+        </div>
+
+        <div class="bloqueInfo" id="weather-summary">
+            <h2 id="info-meteo">Información meteorológico</h2>
+            <p id="weather-loading">Cargando datos meteorológicos…</p>
+            <div id="weather-content"></div>
+            <p id="weather-error"></p>
         </div>
 
         <!-- tarjetas de actividades (como en lista_viajes)-->
@@ -83,4 +90,179 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block js_consultar_tiempo_api %}
+<script>
+    
+    const GEOCODING_URL = "https://api.openweathermap.org/geo/1.0/direct";
+    const DAY_SUMARY_URL = "https://api.openweathermap.org/data/3.0/onecall/day_summary";
+    const OPENWEATHER_API_KEY = "7596e5bae2ceac78abc457dda469c5be";
+
+    function obtenerIcono(precipitation) {
+            if (precipitation === 0) {
+                return "☀️"; // Sol
+            } else if (precipitation < 2) {
+                return "🌤️"; // Parcialmente nublado
+            } else if (precipitation < 5) {
+                return "🌧️"; // Lluvia ligera
+            } else {
+                return "⛈️"; // Lluvia fuerte
+            }
+        }
+
+    function formatearFechaVisual(dateString) {
+        const date = new Date(dateString);
+        const days = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+        const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+        
+        return `${days[date.getDay()]} ${date.getDate()} ${months[date.getMonth()]}`;
+    }
+
+    function renderPronosticoDia(fecha, resumen){
+        const container = document.getElementById('weather-content');
+
+        const fechaStr = formatearFechaVisual(fecha); 
+        const tempMin = resumen.temperature.min;
+        const tempMax = resumen.temperature.max;
+        const precipitacion = resumen.precipitation.total;
+        const icono = obtenerIcono(precipitacion);
+
+        //Creamos una nueva tarjeta del tiempo
+        const cardDia = document.createElement('div');
+        cardDia.className = 'dia-card';
+        cardDia.innerHTML = `
+            <div class="fecha-dia">${fechaStr}</div>
+            <div class="icono-tiempo">${icono}</div>
+            <div class="temperatura">
+                <span class="temp-max">${tempMax}°  </span>
+                <span class="temp-min">  ${tempMin}°</span>
+            </div>
+            <div class="precipitacion"> 
+                ${precipitacion > 0 ? `${precipitacion} mm ` : `Sin lluvia`}
+                </div>
+            `;
+        container.appendChild(cardDia);
+
+    }
+
+    // Función para eliminar acentos
+    function eliminarAcentos(texto) {
+        return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
+
+    //Llamadas a las Api
+    async function geoCoding(destino){
+        const destinoNormalizado = eliminarAcentos(destino.toLowerCase().trim());
+
+        const params = new URLSearchParams({
+            q: destinoNormalizado,
+            limit: 1,
+            appid: OPENWEATHER_API_KEY
+        });
+
+        const url = `${GEOCODING_URL}?${params.toString()}`; //Sintaxis nueva
+        const resp = await fetch(url);
+        if(!resp.ok){
+            throw new Error("Ha ocurrido un error en GeoCoding.");
+        }
+
+        const data = await resp.json(); //Await se utiliza para esperar la respuesta
+        if(!data || data.length === 0){ //Los tres === comparan tipo y valor
+            throw new Error("La respuesta de la api coordenadas esta vacia");
+        }
+
+        const valores = data[0];
+        //Se crea un objeto literal de respuesta con los atributos lat y log
+        return {
+            latitud: valores.lat,
+            longitud: valores.lon
+        }
+    }
+
+    async function fetchPronosticoTiempo(longitud, latitud, fecha, zonaHoraria = "+02:00",medidas ="metric", lang = "es"){
+        const params = new URLSearchParams({
+            lat:latitud,
+            lon:longitud,
+            date:fecha,
+            tz:zonaHoraria,
+            units:medidas,
+            lang:lang,
+            appid: OPENWEATHER_API_KEY
+        });
+
+        const url = `${DAY_SUMARY_URL}?${params.toString()}`;
+        const resp = await fetch(url);
+        if(!resp.ok){
+            throw new Error("La respuesta de la api del tiempo esta vacia");
+        }
+
+        const data = await resp.json();
+        if(!data){
+            throw new Error("La respuesta de la api del tiempo esta vacia");
+        }
+        return data;
+    }
+
+    function generarFechasEntre(fechaInicioStr, fechaFinStr) {
+        const inicio = new Date(fechaInicioStr);
+        const fin = new Date(fechaFinStr);
+
+        const fechas = [];
+        for (let fechaActual = new Date(inicio); fechaActual <= fin; fechaActual.setDate(fechaActual.getDate() + 1)) {
+            const iso = fechaActual.toISOString().split("T")[0];  // Para pasar al formato -> YYYY-MM-DD
+            fechas.push(iso);
+        }
+        return fechas;
+    }
+
+    function fechaToISO(fechaDMY) {
+        if (!fechaDMY) return null;
+        const [d, m, y] = fechaDMY.split("/");
+        const dd = d.padStart(2, "0");
+        const mm = m.padStart(2, "0");
+        return `${y}-${mm}-${dd}`;   // "2025-02-01"
+    }
+
+    document.addEventListener("DOMContentLoaded", async () => {
+        try{
+            //Capturar atributos de html (Destino, fecha_inicio, fecha_fin)
+            const destino = document.getElementById("destino").innerText.trim(); //.trim() -> Para ñimpiar el String devuelto, quita espacios
+            const fechaInicioStr = document.getElementById("fecha-inicio").innerText.trim();
+            const fechaFinStr = document.getElementById("fecha-fin").innerText.trim();
+
+            const fechaInicio = fechaToISO(fechaInicioStr);
+            const fechaFin = fechaToISO(fechaFinStr);
+
+            const coords = await geoCoding(destino);
+
+            const fechas = generarFechasEntre(fechaInicio,fechaFin);
+
+            // Ocultar mensaje de carga
+            const loadingEl = document.getElementById("weather-loading");
+            if (loadingEl) {
+                loadingEl.style.display = "none";
+                console.log("✅ Mensaje de carga ocultado");
+            }
+
+            for (const fecha of fechas){
+                const resumen = await fetchPronosticoTiempo(
+                    coords.longitud,
+                    coords.latitud,
+                    fecha
+                );
+
+                renderPronosticoDia(fecha, resumen);
+            }   
+
+        }catch(err) {
+            console.error(err);
+            const errorEl = document.getElementById("weather-error");
+            if (errorEl) {
+                errorEl.textContent = "Ha ocurrido un error al cargar los datos meteorológicos.";
+            }
+        }
+    });
+</script>  
+
 {% endblock %}
